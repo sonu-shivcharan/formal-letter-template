@@ -44,8 +44,12 @@ function generateLetter() {
   letterContent.appendChild(printBtn);
   printBtn.addEventListener("click", ()=>{window.print()})
 }
-
+function scrollTo(target){
+  target.scrollIntoView();
+}
 document.getElementById("letterForm").addEventListener('submit', (e)=>{
   e.preventDefault();
   generateLetter();
+  const target = document.getElementById("letter-content");
+  scrollTo(target)
 })
