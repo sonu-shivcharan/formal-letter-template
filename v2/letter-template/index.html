@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formal Letter Template</title>
+</head>
+
+<body>
+  <div id="app">
+    <div id="header">
+      <h1>Formal Letter Template</h1>
+    </div>
+    <div class="letter-form">
+      <form id="letterForm">
+        <label for="your-name">Your Name:</label>
+        <input type="text" id="your-name" name="your-name" placeholder="Your Name" required>
+
+        <label for="your-address">Your Address:</label>
+        <input type="text" id="your-address" name="your-address" placeholder="Your Address" required>
+
+        <label for="your-city">City:</label>
+        <input type="text" id="your-city" name="your-city" placeholder="City" required>
+
+        <label for="your-state">State:</label>
+        <input type="text" id="your-state" name="your-state" placeholder="State" required>
+
+        <label for="your-zip">ZIP:</label>
+        <input type="text" id="your-zip" name="your-zip" placeholder="ZIP" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="recipient-name">Recipient's Name:</label>
+        <input type="text" id="recipient-name" name="recipient-name" placeholder="Recipient's Name" required>
+
+        <label for="recipient-title">Recipient's Title:</label>
+        <input type="text" id="recipient-title" name="recipient-title" placeholder="Recipient's Title" required>
+
+        <label for="company">Company/Organization:</label>
+        <input type="text" id="company" name="company" placeholder="Company/Organization" required>
+
+        <label for="company-address">Company Address:</label>
+        <input type="text" id="company-address" name="company-address" placeholder="Company Address" required>
+
+        <label for="company-city">City:</label>
+        <input type="text" id="company-city" name="company-city" placeholder="City" required>
+
+        <label for="company-state">State:</label>
+        <input type="text" id="company-state" name="company-state" placeholder="State" required>
+
+        <label for="company-zip">ZIP:</label>
+        <input type="text" id="company-zip" name="company-zip" placeholder="ZIP" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject Line" required>
+
+        <label for="introduction">Introduction:</label>
+        <textarea id="introduction" name="introduction" rows="4" placeholder="Introduction" required></textarea>
+
+        <label for="body1">Body Paragraph 1:</label>
+        <textarea id="body1" name="body1" rows="4" placeholder="Body Paragraph 1" required></textarea>
+
+        <label for="body2">Body Paragraph 2:</label>
+        <textarea id="body2" name="body2" rows="4" placeholder="Body Paragraph 2" required></textarea>
+
+        <label for="body3">Body Paragraph 3:</label>
+        <textarea id="body3" name="body3" rows="4" placeholder="Body Paragraph 3"></textarea>
+
+        <label for="conclusion">Conclusion:</label>
+        <textarea id="conclusion" name="conclusion" rows="4" placeholder="Conclusion"></textarea>
+
+        <label for="your-title">Your Title (if applicable):</label>
+        <input type="text" id="your-title" name="your-title" placeholder="Your Title">
+        <div style="max-width:200px;margin:auto">
+          <button type="submit" id="generateLetterBtn">Generate Letter</button>
+        </div>
+      </form>
+    </div>
+    <div class="letter" id="letter">
+      <div id="letter-content" class="letter-content flex-col gap"></div>
+    </div>
+  </div>
+  <script type="module" src="./main.js"></script>
+  <script type="module" src="./db.js"></script>
+</body>
+
+</html>
