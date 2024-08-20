@@ -46,9 +46,9 @@ function generateLetter() {
   <div>${formDataObj['email']}</div>
   <div>${formDataObj['phone']}</div>
   </div>
-  <div >${formDataObj['date']}</div>
+  <div>${formDataObj['date']}</div>
   <div id="recipient" class="flex-col">
-  <div >${formDataObj['recipient-name']}</div>
+  <div>${formDataObj['recipient-name']}</div>
   <div>${formDataObj['recipient-title']}</div>
   <div>${formDataObj['company']}</div>
   <div>${formDataObj['company-address']}</div>
@@ -67,7 +67,7 @@ function generateLetter() {
   <div>Sincerely,</div>
   <br>
   <div>${formDataObj['your-name']}</div>
-  <div>${formDataObj?['your-title']}</div>
+  <div>${formDataObj['your-title']? formDataObj['your-title']:""}</div>
   </div>
   `;
   document.head.querySelector("title").text=`Letter - ${subjectLine} | Formal Letter Template`;
