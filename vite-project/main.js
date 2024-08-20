@@ -1,4 +1,3 @@
-to
 let formDataObj = {};
 const form = document.getElementById('letterForm');
 const inputFields = form.querySelectorAll("input");
