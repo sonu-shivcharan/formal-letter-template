@@ -1,4 +1,4 @@
-
+to
 let formDataObj = {};
 const form = document.getElementById('letterForm');
 const inputFields = form.querySelectorAll("input");
@@ -68,7 +68,7 @@ function generateLetter() {
   <div>Sincerely,</div>
   <br>
   <div>${formDataObj['your-name']}</div>
-  <div>${formDataObj['your-title']}</div>
+  <div>${formDataObj?['your-title']}</div>
   </div>
   `;
   document.head.querySelector("title").text=`Letter - ${subjectLine} | Formal Letter Template`;
