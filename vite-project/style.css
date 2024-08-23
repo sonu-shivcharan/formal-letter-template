@@ -44,7 +44,7 @@ body {
 
   .letter {
     display: block;
-    height: 27cm;
+    min-height: 27cm;
   }
 
   .site-name {
@@ -133,7 +133,7 @@ button:hover {
   font-weight: bold;
   position: absolute;
   bottom: 0;
-  font-size: 90%;
+  font-size: 80%;
   display: none;
 }
 
