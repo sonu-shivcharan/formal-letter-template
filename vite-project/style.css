@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto';
+  font-family: 'Brawler';
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Brawler', sans-serif;
 }
 
 .letter-form {
@@ -27,6 +27,7 @@ body {
 }
 
 .letter-content {
+  font-size: 98%;
   white-space: pre-wrap;
 }
 
@@ -44,7 +45,7 @@ body {
 
   .letter {
     display: block;
-    min-height: 27cm;
+    min-height: 29cm;
   }
 
   .site-name {
@@ -95,7 +96,7 @@ textarea {
 }
 
 .gap {
-  row-gap: 1.5rem;
+  row-gap: 1.3rem;
 }
 
 button {
@@ -133,7 +134,7 @@ button:hover {
   font-weight: bold;
   position: absolute;
   bottom: 0;
-  font-size: 80%;
+  font-size: 75%;
   display: none;
 }
 
