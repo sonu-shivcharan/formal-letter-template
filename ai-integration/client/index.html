@@ -5,13 +5,19 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <title>Vite App</title>
+  <title>Formal Letter Generator</title>
 </head>
 
 <body>
   <div id="header">
-    <h1>Formal Letter Template</h1>
+    <h1>Formal Letter Generator</h1>
   </div>
   <div class="letter-form">
     <form id="letterForm">
@@ -60,11 +66,8 @@
       <label for="company-zip">ZIP:</label>
       <input type="text" id="company-zip" name="company-zip" placeholder="ZIP" required>
 
-      <label for="subject">Subject:</label>
-      <input type="text" id="subject" name="subject" placeholder="Subject Line" required>
-
-      <label for="introduction">Prompt:</label>
-      <textarea id="introduction" name="introduction" rows="4" placeholder="Describe what your case.." required></textarea>
+      <label for="prompt">Prompt:</label>
+      <textarea id="prompt" name="prompt" rows="4" placeholder="Describe what to write.." required></textarea>
 
       <label for="your-title">Your Title (if applicable):</label>
       <input type="text" id="your-title" name="your-title" placeholder="Your Title">

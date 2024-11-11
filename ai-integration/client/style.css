@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Brawler';
 }
-
-body {
-  font-family: 'Brawler', sans-serif;
+body{
+  font-family: 'Poppins', sans-serif;
 }
-
+textarea{
+  font-family: 'Poppins', sans-serif;
+}
 .letter-form {
   max-width: 600px;
   margin: auto;
@@ -18,6 +17,7 @@ body {
 }
 
 .letter {
+  font-family: 'Brawler',sans-serif;
   margin: 20px auto;
   max-width: 20cm;
   border: 0px solid #000;
@@ -27,7 +27,8 @@ body {
 }
 
 .letter-content {
-  font-size: 98%;
+
+  font-size: 95%;
   white-space: pre-wrap;
 }
 

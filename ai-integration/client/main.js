@@ -1,5 +1,5 @@
-
-
+import MarkdownIt from "markdown-it";
+const md = new MarkdownIt();
 let formDataObj = {};
 const form = document.getElementById('letterForm');
 const inputFields = form.querySelectorAll("input");
@@ -16,10 +16,11 @@ async function sendData(prompt) {
       });
       const result = await response.json();
       console.log('Server response:', result);
+      return result;
   } catch (error) {
       console.error('Error:', error);
   }
-  return result;
+  
 }
 
 
@@ -37,7 +38,7 @@ async function sendData(prompt) {
   }
 
 })();
-sendData();
+
 function insertValues(){
   for(const key in formDataObj){
     const field = document.getElementById(key.toString());
@@ -57,13 +58,15 @@ addEvtBlur(inputFields);
 addEvtBlur(textFields);
 function generateLetter(result) {
   const letterContent = document.getElementById('letter-content');
-  letterContent.innerHTML = result;
-  document.head.querySelector("title").text=`Letter - ${subjectLine} | Formal Letter Template`;
-  letterContent.innerHTML = letterHtml;
+ 
+  document.head.querySelector("title").text=`Letter | Formal Letter Template`;
+  const htmlContent = md.render(result);
+  console.log(htmlContent)
+  letterContent.innerHTML = htmlContent;
   const printBtn = document.createElement("button");
   printBtn.id="print-btn";
   printBtn.innerText="Print";
-  letterContent.appendChild(printBtn);
+  letterContent.append(printBtn);
   printBtn.addEventListener("click", ()=>{window.print()})
 }
 function scrollTo(target){
@@ -71,8 +74,19 @@ function scrollTo(target){
 }
 document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   e.preventDefault();
- const  result = await sendData();
-  generateLetter(result);
+  const detailsWithPrompt = getPrompt();
+ const  result = await sendData(detailsWithPrompt);
+  generateLetter(result.content);
   const target = document.getElementById("letter-content");
   scrollTo(target)
 })
+
+
+function getPrompt(){
+  const data= [];
+  for(const key in formDataObj){
+    data.push([`${key} : ${formDataObj[key]}`])
+  }
+  console.log("prompt data",data)
+  return data.join(" ");
+}
