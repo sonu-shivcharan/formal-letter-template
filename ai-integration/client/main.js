@@ -7,16 +7,16 @@ const textFields = form.querySelectorAll("textarea");
 
 async function sendData(prompt) {
   try {
-      const response = await fetch(import.meta.env.BACKEND_URL, {
+      const response = await fetch(import.meta.env.VITE_APP_BACKEND_URL, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({prompt})
       });
-      if(!response.ok){
-         throw "Something went wrong";
-      }
+      // if(!response.ok){
+      //    throw "Something went wrong";
+      // }
       const result = await response.json();
       console.log('Server response:', result);
       return result;
