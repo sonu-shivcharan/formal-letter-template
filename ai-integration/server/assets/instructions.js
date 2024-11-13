@@ -41,6 +41,7 @@ Sincerely,
 
 [Your Name]
 [Contact Info]
+[Your Title]
 Phone: [Your Phone Number]
 Email: [Your Email]
 
