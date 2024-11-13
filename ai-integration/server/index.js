@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-
+const instructions = require("./assets/instructions")
 const {
   GoogleGenerativeAI,
   HarmBlockThreshold,
@@ -9,38 +9,27 @@ const {
 const genAI = new GoogleGenerativeAI(process.env.GEN_AI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-const instructions = `
-  Generate a formal letter based on the details provided. Follow a structured format with the sender’s details, recipient’s details, subject line, greeting, body, and closing. Use bold for the subject line and necessary headings. The letter should be clear, professional, and ready to use as a final draft.
 
-  The recipient’s address should be the company address. Include the sender's contact information at the end.
+const app = express();
+const PORT = 5000;
 
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-  [Your Name]
-  [Your Address], [Your City], [Your State], [Your ZIP]
-  [Your Phone Number]
-  [Your Email]
-  
-  Date: [Date]
+// Define a simple route to handle data
+app.post("/api/data", async (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const result = await generateLetter(data.prompt);
+  const content = getContent(result)
+  res.json({ message: "Data received", content });
+});
 
-  [Recipient Name]
-  [Recipient Title]
-  [Company Name]
-  [Company Address], [Company City], [Company State], [Company ZIP]
-  
-  Subject: [Subject]
-  
-  Greeting:
-  Dear [Recipient Title] [Recipient Name],
-  
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 
-  [Write the body of the letter here, including the introduction, purpose, and any other relevant details.]
-
-  Sincerely,
-  [Your Name]
-  
-  Phone: [Your Phone Number]
-  Email: [Your Email]
-  `;
 
 async function generateLetter(prompt) {
   try {
@@ -53,21 +42,31 @@ async function generateLetter(prompt) {
     return `Error Something wenrt wrong ${err}`;
   }
 }
-const app = express();
-const PORT = 5000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+function getContent(content){
+  const letter={}
+  console.log("from content, ", content)
+  // subject 
+  const subjectMarker = content.match(/-{1,}subject-{1,}/i)
+  letter.subjectLine = getSlice(content, subjectMarker[0], subjectMarker.index);
+  letter.start = getSlice(content,subjectMarker[0], subjectMarker.index, true)
 
-// Define a simple route to handle data
-app.post("/api/data", async (req, res) => {
-  const data = req.body;
-  console.log(data);
-  const content = await generateLetter(data.prompt);
-  res.json({ message: "Data received", content });
-});
+  //extracting body of letter 
+  const bodyMarker = content.match(/-{1,}body-{1,}/i);
+  letter.body = getSlice(content, bodyMarker[0], bodyMarker.index)
+  letter.end = getSlice(content,bodyMarker[0], bodyMarker.index, false, true);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+  return letter;
+}
+
+function getSlice(str, marker, start, getStart=false, getEnd=false){
+
+  if(!getStart && !getEnd){
+  const end = str.lastIndexOf(marker);
+    return str.slice(start+marker.length+1, end-1);
+  }else if(getStart){
+    return str.slice(0, start);
+  }else if(getEnd){
+    return str.slice(str.lastIndexOf(marker)+marker.length);
+  }
+}
