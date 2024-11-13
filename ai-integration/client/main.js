@@ -7,13 +7,16 @@ const textFields = form.querySelectorAll("textarea");
 
 async function sendData(prompt) {
   try {
-      const response = await fetch(import.meta.env.VITE_APP_BACKEND_URL, {
+      const response = await fetch(import.meta.env.BACKEND_URL ?? 'http://localhost:5000/api/data', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({prompt})
       });
+      if(!response.ok){
+         throw "Something went wrong";
+      }
       const result = await response.json();
       console.log('Server response:', result);
       return result;
@@ -22,10 +25,6 @@ async function sendData(prompt) {
   }
   
 }
-
-
-
-
 
 (function checkPrevLetter(){
   const letterFromLocalStore = localStorage.getItem('lastLetter');
@@ -63,7 +62,7 @@ function generateLetter({subjectLine, body, start, end}) {
   const letterEnd = letterContent.querySelector("#end");
 
   document.head.querySelector("title").text=`Letter - ${subjectLine.match(/[^*]+/g)[0]}| Formal Letter Template`;
-  const htmlContent = md.render(`**Subject : ${subjectLine}**`)
+  const htmlContent = md.render(`**${subjectLine}**`)
   letterStart.innerHTML= `${md.render(start)} ${htmlContent}`;
   letterBody.innerHTML = md.render(body);
   letterEnd.innerHTML = md.render(end);
@@ -101,7 +100,6 @@ function getPrompt(){
   for(const key in formDataObj){
     data.push([`${key} : ${formDataObj[key]}`])
   }
-  console.log("prompt data",data)
   return data.join(" ");
 }
 

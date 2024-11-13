@@ -15,8 +15,9 @@ const PORT = 5000;
 
 // Middleware
 app.use(cors({
-  origin: import.meta.env.FRONTEND_URL  // Replace with your frontend URL
+  origin: process.env.FRONTEND_URL  // Replace with your frontend URL
 }));
+
 app.use(express.json());
 
 // Define a simple route to handle data
@@ -37,7 +38,7 @@ async function generateLetter(prompt) {
   try {
     const result = await model.generateContent([prompt, instructions]);
     const data = result.response.text();
-    console.log(data);
+    console.log('Success..');
     return data;
   } catch (err) {
     console.log(err);
