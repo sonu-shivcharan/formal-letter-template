@@ -7,7 +7,7 @@ const textFields = form.querySelectorAll("textarea");
 
 async function sendData(prompt) {
   try {
-      const response = await fetch(import.meta.env.BACKEND_URL ?? 'http://localhost:5000/api/data', {
+      const response = await fetch(import.meta.env.BACKEND_URL, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
