@@ -7,7 +7,7 @@ const textFields = form.querySelectorAll("textarea");
 
 async function sendData(prompt) {
   try {
-      const response = await fetch('http://localhost:5000/api/data', {
+      const response = await fetch(import.meta.env.VITE_APP_BACKEND_URL, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
