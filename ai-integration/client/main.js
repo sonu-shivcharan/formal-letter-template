@@ -56,29 +56,43 @@ function addEvtBlur(elem){
 }
 addEvtBlur(inputFields);
 addEvtBlur(textFields);
-function generateLetter(result) {
+function generateLetter({subjectLine, body, start, end}) {
   const letterContent = document.getElementById('letter-content');
- 
-  document.head.querySelector("title").text=`Letter | Formal Letter Template`;
-  const htmlContent = md.render(result);
+  const letterStart = letterContent.querySelector("#start");
+  const letterBody = letterContent.querySelector("#body");
+  const letterEnd = letterContent.querySelector("#end");
+
+  document.head.querySelector("title").text=`Letter - ${subjectLine.match(/[^*]+/g)[0]}| Formal Letter Template`;
+  const htmlContent = md.render(`**Subject : ${subjectLine}**`)
+  letterStart.innerHTML= `${md.render(start)} ${htmlContent}`;
+  letterBody.innerHTML = md.render(body);
+  letterEnd.innerHTML = md.render(end);
+  addEditBtn(letterBody);
+
   console.log(htmlContent)
-  letterContent.innerHTML = htmlContent;
+  // letterContent.innerHTML = md.render(start)+htmlContent;
+  if(!document.getElementById("print-btn")){
   const printBtn = document.createElement("button");
   printBtn.id="print-btn";
   printBtn.innerText="Print";
   letterContent.append(printBtn);
   printBtn.addEventListener("click", ()=>{window.print()})
+  }
 }
 function scrollTo(target){
   target.scrollIntoView({behavior:'smooth'});
 }
 document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   e.preventDefault();
+  const letterBody = document.querySelector("#letter-content #body")
+  letterBody.innerHTML =`<div id="loader">Generating...</div>` ;
   const detailsWithPrompt = getPrompt();
- const  result = await sendData(detailsWithPrompt);
+  const  result = await sendData(detailsWithPrompt);
   generateLetter(result.content);
+
   const target = document.getElementById("letter-content");
   scrollTo(target)
+
 })
 
 
@@ -89,4 +103,47 @@ function getPrompt(){
   }
   console.log("prompt data",data)
   return data.join(" ");
+}
+
+function editContent(element, editBtn){
+  const text = element.innerText;
+  const textArea = document.createElement('textarea')
+  textArea.rows='10';
+  textArea.value=text;
+  textArea.addEventListener('blur', (e)=>{
+    element.innerHTML = md.render(e.target.value);
+    e.target.replaceWith(element);
+    element.appendChild(editBtn)
+  })
+  element.replaceWith(textArea)
+  textArea.focus()
+  console.dir(element)
+}
+
+function addEditBtn(letterBody){
+  const btn =  document.createElement('button');
+  btn.id="edit-btn"
+  btn.innerText="Edit"
+  btn.addEventListener('click', ()=>{
+    btn.remove();
+    editContent(letterBody, btn)
+  })
+  letterBody.appendChild(btn)
+}
+
+
+
+// Function to create and show the loader
+function showLoader() {
+  const loader = document.createElement('div');
+  loader.id = 'loader';
+  // Append the loader to the body
+  document.body.appendChild(loader);
+}
+// Function to hide and remove the loader
+function hideLoader() {
+  const loader = document.getElementById('loader');
+  if (loader) {
+    loader.remove();
+  }
 }
