@@ -1,6 +1,7 @@
 /* Light theme (default) */
 :root {
   --background-color: #ffffff;
+  --background-secondary:  #f1f1f1;
   --text-color: #383838;
   --primary-color: #03b180;
   --secondary-color: #00a17a;
@@ -13,7 +14,8 @@
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #1a1a1a;
+    --background-color: #222222;
+    --background-secondary:  #000;
     --text-color: #f0f0f0;
     --primary-color: #00d4a0;
     --secondary-color: #00b07e;
@@ -200,7 +202,7 @@ button:hover {
 #footer {
   height: 200px;
   width: 100%;
-  background-color: var(--background-color);
+  background-color: var(--background-secondary);
   color: rgb(0, 0, 0);
   font-weight: 400;
   align-items: center;
@@ -212,7 +214,7 @@ button:hover {
 }
 
 #footer a {
-  color: #000;
+  color: var(--text-color);
   text-decoration: none;
   display: flex;
   align-items: center;
