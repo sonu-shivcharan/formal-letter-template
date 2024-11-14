@@ -93,9 +93,10 @@ document.getElementById("letterForm").addEventListener('submit', async (e)=>{
 
   //adding removed letter content
   target.appendChild(letterContent)
+  //removing skelaton loader
+  skeleton.remove();
   generateLetter(result.content, letterContent);
-    //removing skelaton loader
-    skeleton.remove();
+    
 })
 
 function getPrompt(){
