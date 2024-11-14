@@ -14,9 +14,10 @@ async function sendData(prompt) {
           },
           body: JSON.stringify({prompt})
       });
-      // if(!response.ok){
-      //    throw "Something went wrong";
-      // }
+      if(!response.ok){
+        alert("Something went wrong");
+         throw "Something went wrong";
+      }
       const result = await response.json();
       console.log('Server response:', result);
       return result;
@@ -89,10 +90,7 @@ document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   scrollTo(target)
   const detailsWithPrompt = getPrompt();
   const  result = await sendData(detailsWithPrompt);
-  if(!result || !result.ok){
-    alert("Something went wrong");
-    throw "Something Went wrong"
-  }
+
   generateLetter(result.content);
     //removing skelaton loader
     skeleton.remove();
