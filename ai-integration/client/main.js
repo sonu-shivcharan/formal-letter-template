@@ -56,8 +56,8 @@ function addEvtBlur(elem){
 }
 addEvtBlur(inputFields);
 addEvtBlur(textFields);
-function generateLetter({subjectLine, body, start, end}) {
-  const letterContent = document.getElementById('letter-content');
+function generateLetter({subjectLine, body, start, end}, letterContent) {
+
   const letterStart = letterContent.querySelector("#start");
   const letterBody = letterContent.querySelector("#body");
   const letterEnd = letterContent.querySelector("#end");
@@ -68,9 +68,6 @@ function generateLetter({subjectLine, body, start, end}) {
   letterBody.innerHTML = md.render(body);
   letterEnd.innerHTML = md.render(end);
   addEditBtn(letterBody);
-
-  console.log(htmlContent)
-  // letterContent.innerHTML = md.render(start)+htmlContent;
   if(!document.getElementById("print-btn")){
   const printBtn = document.createElement("button");
   printBtn.id="print-btn";
@@ -84,14 +81,19 @@ function scrollTo(target){
 }
 document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   e.preventDefault();
+  const letterContent = document.getElementById("letter-content");
+  letterContent.remove();
   const target = document.getElementById("letter");
   target.style.display="block"
+
   const skeleton=addSkelaton(target)
   scrollTo(target)
   const detailsWithPrompt = getPrompt();
   const  result = await sendData(detailsWithPrompt);
 
-  generateLetter(result.content);
+  //adding removed letter content
+  target.appendChild(letterContent)
+  generateLetter(result.content, letterContent);
     //removing skelaton loader
     skeleton.remove();
 })
