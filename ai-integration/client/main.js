@@ -175,7 +175,9 @@ function addSkelaton(target){
     ['medium', 'long', 'long'],
     ['short', 'short', 'short']
   ];
+  if(document.querySelector(".skeleton-loader")) return null;
   const skeleton = generateSkeletonLoader(skeletonData)
+  
   target.appendChild(skeleton);
   return skeleton;
 }
