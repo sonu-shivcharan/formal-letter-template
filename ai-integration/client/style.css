@@ -36,6 +36,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 textarea {
@@ -56,8 +57,11 @@ textarea {
   padding: 20px;
   page-break-before: always;
   position: relative;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: #fff;
+  color: black;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: none;
 }
 
 .letter-content {
@@ -82,6 +86,8 @@ textarea {
   .letter {
     display: block;
     min-height: 29cm;
+    box-shadow: none;
+    border-radius: 0;
   }
   .letter *{
     color: black
@@ -236,6 +242,73 @@ button:hover {
   margin: auto;
   font-weight: 600;
   color: var(--text-color);
+}
+
+.skeleton-loader {
+  width: 100%;
+  height: 700px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  overflow: hidden;
+}
+
+/* Skeleton style for sender details */
+.bar-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* The skeleton bar used for text placeholders */
+.skeleton-bar {
+  overflow: hidden;
+  background-color:  #e0e0e0;
+  border-radius: 4px;
+  animation: loading 1.5s infinite alternate ease-in-out;
+  position: relative;
+}
+
+/* Different sizes for different content */
+.skeleton-bar.short {
+  width: 30%;
+  height: 16px;
+}
+
+.skeleton-bar.medium {
+  width: 80%;
+  height: 16px;
+}
+
+.skeleton-bar.long {
+  width: 100%;
+  height: 16px;
+}
+
+/* Gradient shimmer effect for skeleton bars */
+.skeleton-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Shimmer animation for the skeleton bars */
+@keyframes shimmer {
+  0% {
+      left: -100%;
+  }
+  100% {
+      left: 100%;
+  }
 }
 
 @keyframes spin {

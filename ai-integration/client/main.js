@@ -14,9 +14,9 @@ async function sendData(prompt) {
           },
           body: JSON.stringify({prompt})
       });
-      // if(!response.ok){
-      //    throw "Something went wrong";
-      // }
+      if(!response.ok){
+         throw "Something went wrong";
+      }
       const result = await response.json();
       console.log('Server response:', result);
       return result;
@@ -83,17 +83,20 @@ function scrollTo(target){
 }
 document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   e.preventDefault();
-  const letterBody = document.querySelector("#letter-content #body")
-  letterBody.innerHTML =`<div id="loader">Generating...</div>` ;
+  const target = document.getElementById("letter");
+  target.style.display="block"
+  const skeleton=addSkelaton(target)
+  scrollTo(target)
   const detailsWithPrompt = getPrompt();
   const  result = await sendData(detailsWithPrompt);
+  if(!result || !result.ok){
+    alert("Something went wrong");
+    throw "Something Went wrong"
+  }
   generateLetter(result.content);
-
-  const target = document.getElementById("letter-content");
-  scrollTo(target)
-
+    //removing skelaton loader
+    skeleton.remove();
 })
-
 
 function getPrompt(){
   const data= [];
@@ -144,4 +147,35 @@ function hideLoader() {
   if (loader) {
     loader.remove();
   }
+}
+ 
+function generateSkeletonLoader(skeletonData) {
+  // Iterate through the skeletonData array
+  const container = document.createElement('div');
+  container.classList.add("skeleton-loader")
+  skeletonData.forEach(barGroup => {
+      const barContainer = document.createElement('div');
+      barContainer.classList.add('bar-container');
+
+      // For each bar in the group, create a skeleton-bar div
+      barGroup.forEach(barType => {
+          const skeletonBar = document.createElement('div');
+          skeletonBar.classList.add('skeleton-bar', barType);
+          barContainer.appendChild(skeletonBar);
+      });
+      container.appendChild(barContainer)
+  });
+  return container;
+
+}
+
+function addSkelaton(target){
+  const skeletonData = [
+    ['short', 'short', 'medium'],
+    ['medium', 'long', 'long'],
+    ['short', 'short', 'short']
+  ];
+  const skeleton = generateSkeletonLoader(skeletonData)
+  target.appendChild(skeleton);
+  return skeleton;
 }
