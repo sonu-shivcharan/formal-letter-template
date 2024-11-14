@@ -14,9 +14,9 @@ async function sendData(prompt) {
           },
           body: JSON.stringify({prompt})
       });
-      if(!response.ok){
-         throw "Something went wrong";
-      }
+      // if(!response.ok){
+      //    throw "Something went wrong";
+      // }
       const result = await response.json();
       console.log('Server response:', result);
       return result;
