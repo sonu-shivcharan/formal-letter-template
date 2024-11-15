@@ -62,7 +62,7 @@ function generateLetter({subjectLine, body, start, end}, letterContent) {
   const letterBody = letterContent.querySelector("#body");
   const letterEnd = letterContent.querySelector("#end");
 
-  document.head.querySelector("title").text=`Letter - ${subjectLine.replace(/subject/gi, '')}| Formal Letter Template`;
+  document.head.querySelector("title").text=`Letter - ${subjectLine.match(/[^*]+/g)[0]}| Formal Letter Template`;
   const htmlContent = md.render(`**${subjectLine}**`)
   letterStart.innerHTML= `${md.render(start)} ${htmlContent}`;
   letterBody.innerHTML = md.render(body);
@@ -84,7 +84,8 @@ document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   const letterContent = document.getElementById("letter-content");
   letterContent.remove();
   const target = document.getElementById("letter");
-  target.style.display="block";
+  target.style.display="block"
+
   const skeleton=addSkelaton(target)
   scrollTo(target)
   const detailsWithPrompt = getPrompt();
@@ -95,7 +96,7 @@ document.getElementById("letterForm").addEventListener('submit', async (e)=>{
   //removing skelaton loader
   skeleton.remove();
   generateLetter(result.content, letterContent);
-  scrollTo(target)
+    
 })
 
 function getPrompt(){
@@ -171,9 +172,8 @@ function generateSkeletonLoader(skeletonData) {
 
 function addSkelaton(target){
   const skeletonData = [
-    ['short', 'short', 'short'],
-    ['short','medium','']
-    ['long', 'long', 'long'],
+    ['short', 'short', 'medium'],
+    ['medium', 'long', 'long'],
     ['short', 'short', 'short']
   ];
   const prevSkeleton = document.querySelector(".skeleton-loader")
