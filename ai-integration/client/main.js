@@ -4,10 +4,26 @@ let formDataObj = {};
 const form = document.getElementById("letterForm");
 const inputFields = form.querySelectorAll("input");
 const textFields = form.querySelectorAll("textarea");
+const BASE_URL=import.meta.env.VITE_APP_BACKEND_URL;
 
+(()=>{
+  setTimeout(startServer, 5000)
+})()
+// start the server 
+async function startServer(){
+  fetch(BASE_URL+"/start")
+  .then((response)=>response.json())
+  .then((result)=>{
+    console.log(result.message)
+  }).catch((err)=>{
+    alert('Something went wrong!')
+    throw `Error : ${err}`;
+  })
+ 
+}
 async function sendData(promptObj) {
   try {
-    const response = await fetch(import.meta.env.VITE_APP_BACKEND_URL, {
+    const response = await fetch(BASE_URL+"/api/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
