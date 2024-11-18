@@ -6,9 +6,9 @@ const inputFields = form.querySelectorAll("input");
 const textFields = form.querySelectorAll("textarea");
 const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
-(() => {
-  setTimeout(startServer, 5000);
-})();
+// (() => {
+//   setTimeout(startServer, 5000);
+// })();
 // start the server
 async function startServer() {
   fetch(BASE_URL + "/start", {
