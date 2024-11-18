@@ -27,7 +27,8 @@ Company Name: [company]
 Company Address: [company-address], [company-city], [company-state], [company-zip]
 Subject: [subject]
 Your Title : [your-title]
-Prompt: [prompt]
+
+ [prompt]
 
 Example : 
 
@@ -44,7 +45,7 @@ Date: [Date]
 [Company Address], [Company City], [Company State], [Company ZIP]
 
 ---subject---
-Subject: [Subject line with underline]
+[Subject]
 ---subject---
 
 ---body---

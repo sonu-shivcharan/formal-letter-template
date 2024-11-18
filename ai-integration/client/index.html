@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +22,7 @@
     Generating...<div id="loader"></div>
   </div> -->
    <div id="header">
-    <h1>Formal Letter Generator</h1>
+    <h1>AI Letter Generator</h1>
   </div>
   <div class="letter-form">
     <form id="letterForm">
@@ -76,7 +77,7 @@
       <label for="your-title">Your Title (if applicable):</label>
       <input type="text" id="your-title" name="your-title" placeholder="Your Title">
       <div style="max-width:200px;margin:auto">
-        <button type="submit">Generate Letter</button>
+        <button type="submit">Generate with AI</button>
       </div>
     </form>
   </div>
@@ -91,10 +92,13 @@
       Made using <a href="https://letter-template.netlify.app/">https://letter-template.netlify.app/</a>
     </div>
   </div>
-  <footer id="footer" class="flex-col">
+  <footer id="footer" class="flex-center flex-col">
     <div class="container">
       <a href="https://github.com/sonu-shivcharan/Formal-letter-Template" target="_blank"> <img src="./github-logo.png"
           alt="">Contribute</a>
+    </div>
+    <div class="container flex-center">
+      Powered By <img src="./google-gemini-icon.svg" /> Gemini 
     </div>
   </footer>
   <script type="module" src="./main.js"></script>
