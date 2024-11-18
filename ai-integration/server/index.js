@@ -30,7 +30,7 @@ const PORT = 5000;
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL  // Replace with your frontend URL
+    origin: "*" //process.env.FRONTEND_URL  // Replace with your frontend URL
   })
 );
 
