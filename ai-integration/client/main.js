@@ -88,7 +88,7 @@ function generateLetter({ subjectLine, body, start, end }, letterContent) {
   document.head.querySelector("title").text = `Letter - ${
     subjectLine.match(/[^*]+/g)[0]
   }| Formal Letter Template`;
-  const htmlContent = md.render(`**Subject : ${subjectLine}**`);
+  const htmlContent = md.render(`**Subject : ${subjectLine.trim()}**`);
   letterStart.innerHTML = `${md.render(start)} ${htmlContent}`;
   letterBody.innerHTML = md.render(body);
   letterEnd.innerHTML = md.render(end);
