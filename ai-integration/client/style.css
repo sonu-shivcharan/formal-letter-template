@@ -126,7 +126,11 @@ textarea:focus {
 textarea {
   resize: vertical;
 }
-
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .flex-col {
   display: flex;
   flex-direction: column;
@@ -209,7 +213,7 @@ button:hover {
   height: 200px;
   width: 100%;
   background-color: var(--background-secondary);
-  color: rgb(0, 0, 0);
+  color: var(--text-color);
   font-weight: 400;
   align-items: center;
   justify-content: center;
@@ -311,11 +315,3 @@ button:hover {
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
