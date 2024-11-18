@@ -30,7 +30,7 @@ const PORT = 5000;
 // Middleware
 app.use(
   cors({
-    origin: "*", //process.env.FRONTEND_URL  // Replace with your frontend URL
+    origin: process.env.FRONTEND_URL  // Replace with your frontend URL
   })
 );
 
@@ -49,9 +49,18 @@ app.post("/api/data", async (req, res) => {
       errorMessage: result?.errorDetails[1]?.message,
     });
   }
-  console.log("result ", result);
   const content = getContent(result);
   res.status(200).json({ success: true, content });
+});
+
+app.get("/start", async (req, res) => {
+  try {
+    console.log("Starting...");
+    res.json({ success: true, message: "Server started" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ success: false, message: "Server failed to start" });
+  }
 });
 
 app.listen(PORT, () => {
@@ -64,7 +73,6 @@ function getPrompt(obj){
     if(key!=="prompt") prompt+= `${key} : ${obj[key]}\n`
   }
   prompt+=`\n ${obj["prompt"]}\n`
-  console.log(prompt)
   return prompt;
 }
 
