@@ -4,26 +4,35 @@ let formDataObj = {};
 const form = document.getElementById("letterForm");
 const inputFields = form.querySelectorAll("input");
 const textFields = form.querySelectorAll("textarea");
-const BASE_URL=import.meta.env.VITE_APP_BACKEND_URL;
+const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
-(()=>{
-  setTimeout(startServer, 5000)
-})()
-// start the server 
-async function startServer(){
-  fetch(BASE_URL+"/start")
-  .then((response)=>response.json())
-  .then((result)=>{
-    console.log(result.message)
-  }).catch((err)=>{
-    alert('Something went wrong!')
-    throw `Error : ${err}`;
+(() => {
+  setTimeout(startServer, 5000);
+})();
+// start the server
+async function startServer() {
+  fetch(BASE_URL + "/start", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
- 
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse JSON response
+    })
+    .then((data) => {
+      console.log("Response from server:", data);
+    })
+    .catch((error) => {
+      console.error("Error fetching /start:", error);
+    });
 }
 async function sendData(promptObj) {
   try {
-    const response = await fetch(BASE_URL+"/api/data", {
+    const response = await fetch(BASE_URL + "/api/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -107,18 +116,18 @@ document.getElementById("letterForm").addEventListener("submit", async (e) => {
   const skeleton = addSkelaton(target);
   scrollTo(target);
   const result = await sendData(formDataObj);
-  if(!result.success){
+  if (!result.success) {
     skeleton.remove();
-    target.style.display="none"
+    target.style.display = "none";
     alert("Somthing went wrong");
-    throw `Error : ${result.errorMessage}`
+    throw `Error : ${result.errorMessage}`;
   }
   //adding removed letter content
   target.appendChild(letterContent);
   //removing skelaton loader
   skeleton.remove();
   generateLetter(result.content, letterContent);
-  scrollTo(target)
+  scrollTo(target);
 });
 
 function editContent(element, editBtn) {
@@ -146,7 +155,6 @@ function addEditBtn(letterBody) {
   });
   letterBody.appendChild(btn);
 }
-
 
 function generateSkeletonLoader(skeletonData) {
   // Iterate through the skeletonData array
