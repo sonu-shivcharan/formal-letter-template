@@ -32,7 +32,7 @@ async function startServer() {
 }
 async function sendData(promptObj) {
   try {
-    const response = await fetch(BASE_URL + "/api/data", {
+    const response = await fetch(BASE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
