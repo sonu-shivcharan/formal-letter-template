@@ -4,11 +4,16 @@ let formDataObj = {};
 const form = document.getElementById("letterForm");
 const inputFields = form.querySelectorAll("input");
 const textFields = form.querySelectorAll("textarea");
+
 const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
-// (() => {
-//   setTimeout(startServer, 5000);
-// })();
+(() => {
+  const storedTimestamp = localStorage.getItem('timestamp');
+  const currentTimestamp = Date.now();
+  if(!storedTimestamp ||  currentTimestamp-storedTimestamp > 300000){
+    startServer();
+  }
+})();
 // start the server
 async function startServer() {
   fetch(BASE_URL + "/start", {
@@ -28,11 +33,13 @@ async function startServer() {
     })
     .catch((error) => {
       console.error("Error fetching /start:", error);
-    });
+    }).finally(()=>{
+      localStorage.setItem('timestamp', Date.now());
+    })
 }
 async function sendData(promptObj) {
   try {
-    const response = await fetch(BASE_URL, {
+    const response = await fetch(BASE_URL+"/api/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,12 +60,10 @@ async function sendData(promptObj) {
 }
 
 (function checkPrevLetter() {
-  const letterFromLocalStore = localStorage.getItem("lastLetter");
+  const letterFromLocalStore = localStorage.getItem("lastLetterData");
   console.log(letterFromLocalStore);
   if (letterFromLocalStore) {
     formDataObj = JSON.parse(letterFromLocalStore);
-    // insertValues(textFields);
-    // insertValues(inputFields);
     insertValues();
   }
 })();
@@ -74,7 +79,7 @@ function addEvtBlur(elem) {
     field.addEventListener("blur", (e) => {
       formDataObj[e.target.id] = e.target.value;
       console.log(formDataObj);
-      localStorage.setItem("lastLetter", JSON.stringify(formDataObj));
+      localStorage.setItem("lastLetterData", JSON.stringify(formDataObj));
     });
   });
 }
