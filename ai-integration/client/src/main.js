@@ -24,12 +24,11 @@ async function startServer() {
       return response.json(); // Parse JSON response
     })
     .then((data) => {
+      localStorage.setItem('timestamp', Date.now());
       console.log("Response from server:", data);
     })
     .catch((error) => {
       console.error("Error fetching /start:", error);
-    }).finally(()=>{
-      localStorage.setItem('timestamp', Date.now());
     })
 }
 async function sendData(promptObj) {
