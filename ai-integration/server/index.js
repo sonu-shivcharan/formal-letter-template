@@ -30,7 +30,7 @@ const PORT = 5000;
 // Middleware
 app.use(
   cors({
-    origin: "*" //process.env.FRONTEND_URL  // Replace with your frontend URL
+    origin: process.env.FRONTEND_URL  // Replace with your frontend URL
   })
 );
 
@@ -39,18 +39,28 @@ app.use(express.json());
 // Define a simple route to handle data
 app.post("/api/data", async (req, res) => {
   const data = req.body;
-  console.log(data);
-  const prompt = getPrompt(data.promptObj)
-  const result = await generateLetter(prompt);
-  if (typeof result != "string") {
-    return res.status(result.status).json({
+
+  console.log("Received data:", data);
+  try {
+    const prompt = getPrompt(data.promptObj);
+    const result = await generateLetter(prompt);
+
+    if (typeof result !== "string") {
+      return res.status(result?.status || 500).json({
+        success: false,
+        message: "Something went wrong during letter generation.",
+        errorMessage: result?.errorDetails?.[1]?.message || "Unknown error",
+      });
+    }
+    res.status(200).json({ success: true, content: result});
+  } catch (error) {
+    console.error("Unexpected error:", error.message, error.stack);
+    res.status(500).json({
       success: false,
-      message: "Something went wrong",
-      errorMessage: result?.errorDetails[1]?.message,
+      message: "Internal server error.",
+      errorMessage: error.message,
     });
   }
-  const content = getContent(result);
-  res.status(200).json({ success: true, content });
 });
 
 app.get("/start", async (req, res) => {
@@ -79,41 +89,19 @@ function getPrompt(obj){
 async function generateLetter(prompt) {
   try {
     const result = await model.generateContent(prompt);
+
     if (!result?.response) {
+      console.error("Invalid response format:", result);
       return result;
     }
-    const data = result.response.text();
-    console.log("Success..", data);
+
+    const data = result.response.text(); 
+    console.log("Letter generation successful:", data);
     return data;
   } catch (err) {
-    console.log("Something went wrong!", err);
-    return err;
+    console.error("Error during letter generation:", err.message, err.stack);
+    return { status: 500, errorDetails: [{ message: err.message }] };
   }
 }
 
-function getContent(content) {
-  const letter = {};
-  console.log("from content, ", content);
-  // subject
-  const subjectMarker = content.match(/-{1,}subject-{1,}/i);
-  letter.subjectLine = getSlice(content, subjectMarker[0], subjectMarker.index);
-  letter.start = getSlice(content, subjectMarker[0], subjectMarker.index, true);
 
-  //extracting body of letter
-  const bodyMarker = content.match(/-{1,}body-{1,}/i);
-  letter.body = getSlice(content, bodyMarker[0], bodyMarker.index);
-  letter.end = getSlice(content, bodyMarker[0], bodyMarker.index, false, true);
-
-  return letter;
-}
-
-function getSlice(str, marker, start, getStart = false, getEnd = false) {
-  if (!getStart && !getEnd) {
-    const end = str.lastIndexOf(marker);
-    return str.slice(start + marker.length + 1, end - 1);
-  } else if (getStart) {
-    return str.slice(0, start);
-  } else if (getEnd) {
-    return str.slice(str.lastIndexOf(marker) + marker.length);
-  }
-}
