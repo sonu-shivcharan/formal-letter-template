@@ -79,8 +79,8 @@ textarea {
   #header,
   button,
   .letter-form,
-  #footer {
-    display: none;
+  #footer{
+    display: none!important;
   }
   #edit-btn {
     display: none;
