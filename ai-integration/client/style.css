@@ -215,22 +215,23 @@ button:hover {
   background-color: var(--background-secondary);
   color: var(--text-color);
   font-weight: 400;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#footer .container img {
-  width: 40px;
-}
+
 
 #footer a {
   color: var(--text-color);
-  text-decoration: none;
+  text-decoration: none; 
+}
+#footer .container{
+  margin-top: 1rem;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
-
 #overlay {
   position: fixed;
   top: 0;
