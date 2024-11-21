@@ -1,66 +1,65 @@
 const instructions = `
 Please generate a formal letter based on the details provided. Ensure the letter follows a clear and professional structure with the following elements:
+1. Sender’s Details:  
+   - Include the sender’s name, address, phone number, and email. These should appear at the end of the letter.
 
-Sender’s Details: Include the sender’s name, address, phone number, and email at the end of the letter.
-Recipient’s Details: Include the company’s name, address, and any relevant contact details.
-1. Subject Line: The subject should be a clear and concise statement summarizing the purpose of the letter.
+2. Recipient’s Details:  
+   - Provide the recipient's name, title, company name, and address, formatted appropriately at the start of the letter.
 
-Greeting: Start with a formal greeting addressing the recipient by their title and full name
+3. Subject Line:  
+   - Use a clear and concise subject line summarizing the letter's purpose.  
+   - Enclose markers ---subject--- and ---subject--- around the subject for structure clarity.
 
-Body of the Letter: Structure the body clearly with appropriate paragraphs for the content. Use bullet points or numbering if necessary.
-Closing: Use a formal closing phrase.
-Final Draft: Ensure the letter is concise, professional, and polished.
+4. Greeting:  
+   - Start with a formal greeting.  
+   - If the letter is addressed to an educational institute, use "Respected [Title] [Name]." Otherwise, use "Dear [Title] [Name]."
 
-points to remember :
-- Add markers before starting and at the end of body and subject line.
+5. Body of the Letter:  
+   - Structure the content into clear paragraphs.  
+   - Use bullet points or numbering to highlight key points, if necessary.  
+   - Enclose markers ---body--- and ---body--- to define the start and end of the body.
 
-Data Details (user inputs):
+6. Sign-off:  
+   - End with a formal closing phrase such as "Yours sincerely" or "Yours faithfully," depending on the recipient.
 
-Sender's Name: [your-name]
-Sender's Address: [your-address], [your-city], [your-state], [your-zip]
-Sender's Email: [email]
-Sender's Phone: [phone]
-Date: [date]
-Recipient's Name: [recipient-name]
-Recipient's Title: [recipient-title]
-Company Name: [company]
-Company Address: [company-address], [company-city], [company-state], [company-zip]
-Subject: [subject]
-Your Title : [your-title]
+7. Closing Information:  
+   - Provide the sender's name and title below the sign-off.
 
- [prompt]
+---
 
-Example : 
+Template
 
-[Your Name]
-[Your Address], [Your City], [Your State], [Your ZIP]
-[Your Phone Number]
-[Your Email]
+[your-name]  
+[your-address], [your-city], [your-state], [your-zip]  
+[phone]  
+[email]  
 
-Date: [Date]
+Date: [date]  
 
-[Recipient Name]
-[Recipient Title]
-[Company Name]
-[Company Address], [Company City], [Company State], [Company ZIP]
+[recipient-name]  
+[recipient-title]  
+[company-name]  
+[company-address], [company-city], [company-state], [company-zip]  
 
----subject---
-[Subject]
----subject---
+---subject---  
+[subject]  
+---subject---  
 
----body---
-Dear [Recipient Title] [Recipient Name],
+---body---  
+[greeting, e.g., Respected/ Dear [Title] [Name]]  
 
-[Write the body of the letter here, including the introduction, purpose, and any other relevant details.]
----body---
+[Write the letter body here. Include:  
+   - Introduction.  
+   - Purpose of the letter.  
+   - Any additional relevant details.  
+Structure the body in clear paragraphs, and use bullet points or numbering if required.]  
 
-Sincerely,
+---body---  
 
+Yours [sincerely/faithfully],  
 
-[Your Name]
-[Contact Info]
-[Your Title]
-Phone: [Your Phone Number]
-Email: [Your Email]`;
+[your-name]  
+[your-title]  
+`;
 
 module.exports = instructions;
