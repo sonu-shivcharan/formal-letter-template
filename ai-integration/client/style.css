@@ -9,7 +9,7 @@
   --button-hover-color: #00a17a;
   --input-focus-color: #00b07e73;
   --overlay-color: #00000065;
-  --bar-color: #666666;
+  --bar-color: #c5c5c5;
 }
 
 /* Dark theme */
@@ -24,7 +24,7 @@
     --button-hover-color: #00b07e;
     --input-focus-color: #00d4a073;
     --overlay-color: #ffffff3a;
-    --bar-color: #00d4a073;
+    --bar-color: #9b9b9b;
   }
 }
 
@@ -149,8 +149,17 @@ textarea {
   text-align: center;
 }
 
-.gap {
-  row-gap: 1.3rem;
+.gap-xs {
+  row-gap: 0.4rem;
+}
+.gap-s{
+  row-gap: 0.8rem;
+}
+.gap-m {
+  row-gap: 1rem;
+}
+.gap-l {
+  row-gap: 1.4rem;
 }
 
 button {
@@ -185,6 +194,7 @@ button:hover {
 
 #letter-content #body {
   position: relative;
+  text-align: justify;
 }
 
 #header {
@@ -305,17 +315,17 @@ button:hover {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(9, 231, 139, 0.4), rgba(255, 255, 255, 0) 100%);
   animation: shimmer 1.5s infinite;
 }
 
 /* Shimmer animation for the skeleton bars */
 @keyframes shimmer {
   0% {
-      left: -100%;
+      left: -70%;
   }
   100% {
-      left: 100%;
+      left: 90%;
   }
 }
 
