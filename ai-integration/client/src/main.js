@@ -1,10 +1,10 @@
 import MarkdownIt from "markdown-it";
+import addSkelaton from "./skeleton";
 const md = new MarkdownIt();
 let formDataObj = {};
 const form = document.getElementById("letterForm");
 const inputFields = form.querySelectorAll("input");
 const textFields = form.querySelectorAll("textarea");
-
 const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
 (() => {
@@ -14,6 +14,24 @@ const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
     startServer();
   }
 })();
+(function checkPrevLetter() {
+  const letterFromLocalStore = localStorage.getItem("lastLetterData");
+  const lastLetter = localStorage.getItem("lastLetter");
+  console.log(lastLetter)
+ 
+  console.log(letterFromLocalStore);
+  if (letterFromLocalStore) {
+    formDataObj = JSON.parse(letterFromLocalStore);
+    insertValues();
+  }
+
+  if(lastLetter){
+    const letterContent = document.getElementById("letter-content");
+    const content = getContent(JSON.parse(lastLetter).content);
+    generateLetter(content, letterContent);
+  }
+})();
+
 // start the server
 async function startServer() {
   fetch(BASE_URL + "/start")
@@ -52,24 +70,6 @@ async function sendData(promptObj) {
     console.error("Error:", error);
   }
 }
-
-(function checkPrevLetter() {
-  const letterFromLocalStore = localStorage.getItem("lastLetterData");
-  const lastLetter = localStorage.getItem("lastLetter");
-  console.log(lastLetter)
- 
-  console.log(letterFromLocalStore);
-  if (letterFromLocalStore) {
-    formDataObj = JSON.parse(letterFromLocalStore);
-    insertValues();
-  }
-
-  if(lastLetter){
-    const letterContent = document.getElementById("letter-content");
-    const content = getContent(JSON.parse(lastLetter).content);
-    generateLetter(content, letterContent);
-  }
-})();
 
 function insertValues() {
   for (const key in formDataObj) {
@@ -173,6 +173,9 @@ function saveGeneratedLetter(result){
   localStorage.setItem("lastLetter", JSON.stringify(result))
 }
 
+
+
+
 function editContent(element, editBtn) {
   const text = element.innerText;
   const textArea = document.createElement("textarea");
@@ -199,38 +202,4 @@ function addEditBtn(letterBody) {
   letterBody.appendChild(btn);
 }
 
-function generateSkeletonLoader(skeletonData) {
-  // Iterate through the skeletonData array
-  const container = document.createElement("div");
-  container.classList.add("skeleton-loader");
-  skeletonData.forEach((barGroup) => {
-    const barContainer = document.createElement("div");
-    barContainer.classList.add("bar-container");
 
-    // For each bar in the group, create a skeleton-bar div
-    barGroup.forEach((barType) => {
-      const skeletonBar = document.createElement("div");
-      skeletonBar.classList.add("skeleton-bar", barType);
-      barContainer.appendChild(skeletonBar);
-    });
-    container.appendChild(barContainer);
-  });
-  return container;
-}
-
-function addSkelaton(target) {
-  const skeletonData = [
-    ["short", "short", "short"],
-    ["medium", "long", "long"],
-    ["long", "long", "long"],
-    ["long", "long", "long"],
-    ["long", "long", "long"],
-    ["short", "short", "short"],
-  ];
-  const prevSkeleton = document.querySelector(".skeleton-loader");
-  if (prevSkeleton) return prevSkeleton;
-  const skeleton = generateSkeletonLoader(skeletonData);
-
-  target.appendChild(skeleton);
-  return skeleton;
-}
