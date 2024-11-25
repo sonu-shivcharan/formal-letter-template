@@ -96,10 +96,11 @@ function generateLetter({ subjectLine, body, start, end }, letterContent) {
   const letterEnd = letterContent.querySelector("#end");
 
   document.head.querySelector("title").text = `Letter - ${subjectLine}| Formal Letter Template`;
-  const htmlContent = md.render(`**Subject : ${subjectLine.trim()}**`);
-  letterStart.innerHTML = `${md.render(start)} ${htmlContent}`;
-  letterBody.innerHTML = md.render(body);
-  letterEnd.innerHTML = md.render(end);
+  const htmlContent = md.render(`**Subject : ${subjectLine.trim()}**`).replaceAll("<br>", "");
+  letterStart.innerHTML = `${md.render(start).replaceAll("<br>", "")}${htmlContent}`;
+  letterBody.innerHTML = md.render(body).replaceAll("<br>", "");
+  letterEnd.innerHTML = md.render(end).replaceAll("<br>", "");
+  console.log(md.render(start));
   addEditBtn(letterBody);
   if (!document.getElementById("print-btn")) {
     const printBtn = document.createElement("button");

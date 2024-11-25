@@ -40,10 +40,9 @@ Date: [date]
 [recipient-title]  
 [company-name]  
 [company-address], [company-city], [company-state], [company-zip]  
-
 ---subject---  
 [subject]  
----subject---  
+ ---subject---  
 
 ---body---  
 [greeting, e.g., Respected/ Dear [Title] [Name]]  
