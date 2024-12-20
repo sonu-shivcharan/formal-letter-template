@@ -1,14 +1,14 @@
 const exampleData = [
     {
         id:1,
-        name: "Permission Letter1",
+        name: "Permission Letter",
         description: " I would like to kindly request your permission to hold....",
 
     },
     {
         id:2,
-        name: "Permission Letter4",
-        description: " I would like to kindly request your permission to hold....",
+        name: "Leave Application",
+        description: "Request for Leave from [Start Date] to [End Date]",
     },
     { 
         id:3,

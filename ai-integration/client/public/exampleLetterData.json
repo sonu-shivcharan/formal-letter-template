@@ -17,7 +17,7 @@
                 "company-city": "pimpri",
                 "company-state": "karnataka",
                 "company-zip": "413517",
-                "prompt": " Request for Permission to Hold [Item/Event]",
+                "prompt": "",
                 "date": "2024-11-21",
                 "your-title": "student"
             }
@@ -39,7 +39,7 @@
                 "company-city": "pimpri",
                 "company-state": "karnataka",
                 "company-zip": "413517",
-                "prompt": " Request for Permission to Hold [Item/Event]",
+                "prompt": " I would like to request leave from [Start Date] to [End Date] due to [reason]. Kindly approve my request at your earliest convenience.",
                 "date": "2024-11-21",
                 "your-title": "student"
             }
