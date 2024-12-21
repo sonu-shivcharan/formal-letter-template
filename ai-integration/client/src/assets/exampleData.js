@@ -12,13 +12,13 @@ const exampleData = [
     },
     { 
         id:3,
-        name: "Permission Letter4",
+        name: "Approval Letter ",
         description: " I would like to kindly request your permission to hold....",
     },
     {
         id:4,
-        name: "Permission Letter4",
-        description: " I would like to kindly request your permission to hold....",
+        name: "Permission Letter",
+        description: " I would like to kindly request your permission organize...",
     },
 ];
 

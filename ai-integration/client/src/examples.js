@@ -55,24 +55,25 @@ function displayExample() {
 }
 function fetchLetterData(target) {
   let id;
+  let letterPrompt;
   if (exampleLetterData == null) {
-    fetch("../public/exampleLetterData.json")
+    fetch("./exampleLetterData.json")
       .then((response) => {
         return response.json()
       })
       .then((data) => {
-        exampleLetterData = data.data
+        exampleLetterData = data
         id=target.dataset.id
-        insertValues(findData(id))
+        letterPrompt=findData(id)
+        insertValues(letterPrompt)
       })
       .catch((error) => console.log(error));
   }
   else {
    id=target.dataset.id
-    insertValues(findData(id))
+   letterPrompt=findData(id)
+    insertValues(letterPrompt)
   }
-
-
 }
 function findData(id){
   console.log("findData");
@@ -86,11 +87,13 @@ function findData(id){
   return temp
 }
 function insertValues(letterData) {
-  console.log("hugbgh",letterData);
   for (const key in letterData) {
     const field = document.getElementById(key.toString());
     field.value = letterData[key];
   }
+  console.log(letterData,"befor  stringify");
+  console.log(JSON.stringify(letterData),"After  stringify");
+  localStorage.setItem("lastLetterData", JSON.stringify(letterData))
 }
 
 /*  
