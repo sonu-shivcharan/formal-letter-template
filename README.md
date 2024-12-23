@@ -76,7 +76,7 @@ Ensure you have **Node.js** and **npm** installed on your system.
 ## Environment Variables  
 ### Server (`ai-integration/server`):  
 - `GEN_AI_API_KEY`: Your Gemini API key (create one at Gemini AI Studio).  
-- `FRONTEND_URL`: The frontend URL (use `http://localhost:3000` during development).  
+- `FRONTEND_URL`: The frontend URL (use `http://localhost:5173` during development).  
 
 ### Client (`ai-integration/client`):  
 - `VITE_APP_BACKEND_URL`: Backend server URL (use `http://localhost:5000` during development).  

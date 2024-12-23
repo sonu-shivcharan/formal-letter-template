@@ -16,7 +16,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #222222;
-    --background-secondary:  #000;
+    --background-secondary:  rgb(25, 26, 25);
     --text-color: #f0f0f0;
     --primary-color: #00d4a0;
     --secondary-color: #00b07e;
@@ -328,4 +328,76 @@ button:hover {
       left: 90%;
   }
 }
+.ex-btn-container{
+  display: flex;
+  /* border: 2px solid black; */
+  height: 100vh;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  
+}
+.ex-btn{
+  transform: rotate(90deg) translate(0, 0px) ;
+}
+.side-bar{
+  height: 100vh;
+  /* border: 2px solid black; */
+  width: 250px;
+  padding: 10px;
+  background-color:var(--background-color);
+  position: fixed;
+  top: 0;
+  right: 0;
+ overflow-y: auto;
+  translate: 100%;
+  transition: translate 0.2s;
+  z-index: 5;
+  
+}
+.side-bar h2{
+  text-align: center;
+}
+.example-container{
+  padding: 15px;
+  /* border:1px solid black; */
+  font-size: medium;
+  margin-top: 20px;
 
+}
+.example{
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+  
+  border-radius: 5px;
+}
+.example:hover{
+  border:1px solid var(--primary-color);
+}
+.overlay{
+ background-color: rgba(0, 0, 0, 0.2);   
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: none  ;
+  z-index: 4;
+
+}
+.dis{
+  text-align:left;
+margin-top: 10px;
+  font-size: 12px;
+  background-color: rgb(63, 63, 63);
+  padding: 10px;
+  border-radius: 6px;
+}

@@ -78,6 +78,7 @@ function insertValues() {
   }
 }
 function addEvtBlur(elem) {
+  console.log("start xyz");
   elem.forEach((field) => {
     field.addEventListener("blur", (e) => {
       formDataObj[e.target.id] = e.target.value;
@@ -126,7 +127,9 @@ letterForm.addEventListener("submit", async (e) => {
 
   const skeleton = addSkelaton(target);
   scrollTo(target);
+  console.log(formDataObj);
   const result = await sendData(formDataObj);
+
   if (!result.success) {
     skeleton.remove();
     target.style.display = "none";

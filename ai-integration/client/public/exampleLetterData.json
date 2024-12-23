@@ -1,0 +1,90 @@
+[
+    {
+        "id": 1,
+        "data": {
+            "your-name": "Rameshwar Patil",
+            "your-address": "SYBCA(science)",
+            "your-city": "Dr.DY patil Arts Commerce Science Pimpri",
+            "your-state": "Maharastra",
+            "your-zip": "411018",
+            "email": "rameshwarpatil@gmail.com",
+            "phone": "9890472354",
+            "recipient-name": "Sujata Patil",
+            "recipient-title": "HOD cS DEPARTMENT",
+            "company": "Dr.DY patil Arts Commerce Science Pimpri",
+            "company-address": "Sant Tukram Nagar ",
+            "company-city": "Pimpri",
+            "company-state": "Maharastra",
+            "company-zip": "411018",
+            "prompt": "",
+            "date": "2024-11-21",
+            "your-title": "Student"
+        }
+    },
+    {
+        "id": 2,
+        "data": {
+            "your-name": "Jayesh Pandhare",
+            "your-address": "SYBCA(science)",
+            "your-city": "Dr.DY patil Arts Commerce Science Pimpri",
+            "your-state": "Maharastra",
+            "your-zip": "411018",
+            "email": "rameshwarpatil@gmail.com",
+            "phone": "9890472354",
+            "recipient-name": "Sujata Patil",
+            "recipient-title": "HOD cS DEPARTMENT",
+            "company": "Dr.DY patil Arts Commerce Science Pimpri",
+            "company-address": "Sant Tukram Nagar ",
+            "company-city": "pimpri",
+            "company-state": "Maharastra",
+            "company-zip": "411018",
+            "prompt": " I would like to request leave from [Start Date] to [End Date] due to [reason]. Kindly approve my request at your earliest convenience.",
+            "date": "2024-11-21",
+            "your-title": "student"
+        }
+    },
+    {
+        "id": 3,
+        "data": {
+            "your-name": "Arun Jadhav",
+            "your-address": "SYBCA(science)",
+            "your-city": "Dr.DY patil Arts Commerce Science Pimpri",
+            "your-state": "Maharastra",
+            "your-zip": "411018",
+            "email": "arun@gmail.com",
+            "phone": "9890472354",
+            "recipient-name": "Sujata Patil",
+            "recipient-title": "HOD Cs DEPARTMENT",
+            "company": "Dr.DY patil Arts Commerce Science Pimpri",
+            "company-address": "Sant Tukram Nagar ",
+            "company-city": "pimpri",
+            "company-state": "Maharastra",
+            "company-zip": "411018",
+            "prompt": " Request for Permission to Hold [Item/Event]",
+            "date": "2024-11-21",
+            "your-title": "Student"
+        }
+    },
+    {
+        "id": 4,
+        "data": {
+            "your-name": "Onkar Satpute",
+            "your-address": "SYBCA(science)",
+            "your-city": "Dr.Dy patil ACS PIMPRI",
+            "your-state": "Maharastra",
+            "your-zip": "411018",
+            "email": "om@gmail.com",
+            "phone": "9890472354",
+            "recipient-name": "Dr.Ranjit Patil ",
+            "recipient-title": "Principal",
+            "company": "Dr.DY patil ACS Pimpri",
+            "company-address": "Sant Tukram Nagar ",
+            "company-city": "pimpri",
+            "company-state": "Maharastra",
+            "company-zip": "411018",
+            "prompt": "Request for Permission to Organize [Event]",
+            "date": "2024-11-21",
+            "your-title": "CR"
+        }
+    }
+]
