@@ -397,7 +397,7 @@ button:hover {
   text-align:left;
 margin-top: 10px;
   font-size: 12px;
-  background-color: rgb(63, 63, 63);
+  color: var(--text-color);
   padding: 10px;
   border-radius: 6px;
 }
