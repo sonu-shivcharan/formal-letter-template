@@ -87,12 +87,24 @@ function findData(id){
   return temp
 }
 function insertValues(letterData) {
+  const d=new Date()
   for (const key in letterData) {
     const field = document.getElementById(key.toString());
-    field.value = letterData[key];
+    if (key==="date") {
+      let year=d.getFullYear()
+      let month=d.getMonth()+1
+      let date=d.getDate()
+      month= (month<10)?"0"+month:month
+      date=(date<10)?"0"+date:date
+      field.value= `${year}-${month}-${date}`
+    }else{
+      field.value = letterData[key];
+    }
+    
   }
-  console.log(letterData,"befor  stringify");
-  console.log(JSON.stringify(letterData),"After  stringify");
+
+  console.log(letterData,"letterdata");
+  
   localStorage.setItem("lastLetterData", JSON.stringify(letterData))
 }
 
