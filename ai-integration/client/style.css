@@ -363,8 +363,7 @@ button:hover {
   text-align: center;
 }
 .example-container{
-  padding: 15px;
-  /* border:1px solid black; */
+  padding: 10px;
   font-size: medium;
   margin-top: 20px;
 
@@ -372,7 +371,7 @@ button:hover {
 .example{
   border: 1px solid var(--border-color);
   padding: 10px;
-  
+
   text-align: center;
   cursor: pointer;
   margin-top: 10px;
@@ -395,9 +394,9 @@ button:hover {
 }
 .dis{
   text-align:left;
-margin-top: 10px;
+  margin-top: 5px;
   font-size: 12px;
   color: var(--text-color);
-  padding: 10px;
+  padding: 8px;
   border-radius: 6px;
 }
